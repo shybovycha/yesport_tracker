@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VisitorDetailsWindow</class>
+ <widget class="QWidget" name="VisitorDetailsWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>618</width>
+    <height>429</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Відвідувач</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>yesport_icon.png</normaloff>yesport_icon.png</iconset>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

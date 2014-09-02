@@ -8,7 +8,7 @@
 #include <QListWidgetItem>
 
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
 class MainWindow : public QWidget
@@ -24,7 +24,6 @@ private slots:
     void on_quickSearchEdit_textChanged(const QString &arg1);
     void on_departmentsList_editTextChanged(const QString &arg1);
     void on_addDepartmentButton_clicked();
-
     void on_usersList_itemDoubleClicked(QListWidgetItem *item);
 
 private:
@@ -34,7 +33,6 @@ private:
 
 private:
     Ui::MainWindow *ui;
-    QSqlDatabase db;
 };
 
 #endif // MAINWINDOW_H

@@ -14,9 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    visitorslistitem.cpp
+    visitorslistitem.cpp \
+    visitordetailswindow.cpp \
+    databaseprovider.cpp
 
 HEADERS  += mainwindow.h \
-    visitorslistitem.h
+    visitorslistitem.h \
+    visitordetailswindow.h \
+    databaseprovider.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    visitordetailswindow.ui

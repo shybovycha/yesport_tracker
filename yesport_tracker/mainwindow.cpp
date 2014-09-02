@@ -1,4 +1,7 @@
 #include "visitorslistitem.h"
+#include "visitordetailswindow.h"
+#include "databaseprovider.h"
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -21,13 +24,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::initDatabase()
 {
-    this->db = QSqlDatabase::addDatabase("QSQLITE");
-    this->db.setDatabaseName("yesport_database.sqlite");
+    QSqlDatabase db = DatabaseProvider::db();
 
-    if (!this->db.open())
+    if (!db.isOpen())
     {
-        qDebug() << this->db.lastError().text();
-
         QMessageBox msgBox;
 
         msgBox.setText(tr("Failed to open database."));
@@ -41,25 +41,25 @@ void MainWindow::initDatabase()
 
     // query.exec("CREATE TABLE IF NOT EXISTS programs_departments (program_id integer, department_id integer, primary key(program_id, department_id)");
 
-    this->db.exec("CREATE TABLE IF NOT EXISTS departments (id integer primary key autoincrement, name varchar(255))");
+    db.exec("CREATE TABLE IF NOT EXISTS departments (id integer primary key autoincrement, name varchar(255))");
 
-    if (this->db.lastError().type() != QSqlError::NoError)
-        qDebug() << this->db.lastError();
+    if (db.lastError().type() != QSqlError::NoError)
+        qDebug() << db.lastError();
 
-    this->db.exec("CREATE TABLE IF NOT EXISTS visitors (id integer primary key autoincrement, name varchar(255))");
+    db.exec("CREATE TABLE IF NOT EXISTS visitors (id integer primary key autoincrement, name varchar(255))");
 
-    if (this->db.lastError().type() != QSqlError::NoError)
-        qDebug() << this->db.lastError();
+    if (db.lastError().type() != QSqlError::NoError)
+        qDebug() << db.lastError();
 
-    this->db.exec("CREATE TABLE IF NOT EXISTS programs (id integer primary key autoincrement, department_id integer, name varchar(355), cost real, track_visits integer)");
+    db.exec("CREATE TABLE IF NOT EXISTS programs (id integer primary key autoincrement, department_id integer, name varchar(355), cost real, track_visits integer)");
 
-    if (this->db.lastError().type() != QSqlError::NoError)
-        qDebug() << this->db.lastError();
+    if (db.lastError().type() != QSqlError::NoError)
+        qDebug() << db.lastError();
 
-    this->db.exec("CREATE TABLE IF NOT EXISTS orders (id integer primary key autoincrement, program_id integer, visitor_id integer, created_at date, payed_until date, visits_left integer)");
+    db.exec("CREATE TABLE IF NOT EXISTS orders (id integer primary key autoincrement, program_id integer, visitor_id integer, created_at date, payed_until date, visits_left integer)");
 
-    if (this->db.lastError().type() != QSqlError::NoError)
-        qDebug() << this->db.lastError();
+    if (db.lastError().type() != QSqlError::NoError)
+        qDebug() << db.lastError();
 }
 
 void MainWindow::showAllVisitors()
@@ -109,7 +109,7 @@ void MainWindow::on_addVisitorButton_clicked()
         ui->usersList->addItem(name);
     } else
     {
-        qDebug() << this->db.lastError().text();
+        qDebug() << DatabaseProvider::db().lastError().text();
 
         QMessageBox::critical(this, "Error", "Something bad happened!", QMessageBox::Ok);
     }
@@ -122,6 +122,7 @@ void MainWindow::on_quickSearchEdit_textChanged(const QString &text)
     if (text.isEmpty())
     {
         ui->addVisitorButton->setEnabled(false);
+        showAllVisitors();
         return;
     }
 
@@ -144,6 +145,7 @@ void MainWindow::on_departmentsList_editTextChanged(const QString &text)
     if (text.isEmpty())
     {
         ui->addDepartmentButton->setEnabled(false);
+        showAllDepartments();
         return;
     }
 
@@ -171,7 +173,7 @@ void MainWindow::on_addDepartmentButton_clicked()
         ui->departmentsList->addItem(name);
     } else
     {
-        qDebug() << this->db.lastError().text();
+        qDebug() << DatabaseProvider::db().lastError().text();
 
         QMessageBox::critical(this, "Error", "Something bad happened!", QMessageBox::Ok);
     }
@@ -179,5 +181,8 @@ void MainWindow::on_addDepartmentButton_clicked()
 
 void MainWindow::on_usersList_itemDoubleClicked(QListWidgetItem *item)
 {
-    qDebug() << "User selected:" << ((VisitorsListItem*) item)->getId();
+    int visitorId = ((VisitorsListItem*) item)->getId();
+
+    VisitorDetailsWindow *detailsWindow = new VisitorDetailsWindow(visitorId);
+    detailsWindow->show();
 }
