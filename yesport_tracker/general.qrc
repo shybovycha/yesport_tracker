@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>images/Add.png</file>
+        <file>images/Cancel Red Button.png</file>
+        <file>images/Clear Green Button.png</file>
+        <file>images/Gear Alt.png</file>
+        <file>images/minus.png</file>
+        <file>images/plus.png</file>
+        <file>images/Remove.png</file>
+        <file>images/yesport_icon.png</file>
+    </qresource>
+</RCC>

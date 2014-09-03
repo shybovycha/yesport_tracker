@@ -23,8 +23,9 @@ private slots:
     void on_addVisitorButton_clicked();
     void on_quickSearchEdit_textChanged(const QString &arg1);
     void on_departmentsList_editTextChanged(const QString &arg1);
-    void on_addDepartmentButton_clicked();
     void on_usersList_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_settingsButton_clicked();
 
 private:
     void initDatabase();

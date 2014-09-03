@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>VisitorDetailsWindow</class>
- <widget class="QWidget" name="VisitorDetailsWindow">
+ <class>CreateOrderWindow</class>
+ <widget class="QWidget" name="CreateOrderWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>618</width>
-    <height>429</height>
+    <width>561</width>
+    <height>388</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Відвідувач</string>
+   <string>Оплата</string>
   </property>
   <property name="windowIcon">
    <iconset resource="general.qrc">
@@ -23,40 +23,50 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Ім’я</string>
+        <string>Програма</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="visitorNameEdit"/>
+      <widget class="QComboBox" name="programsList"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Сума</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="amountEdit"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>До</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCalendarWidget" name="datePicker"/>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QPushButton" name="createOrderButton">
          <property name="text">
-          <string>Оплати</string>
+          <string>Оплатити</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="createOrderButton">
+        <widget class="QPushButton" name="cancelButton">
          <property name="text">
-          <string>Додати</string>
+          <string>Відмінити</string>
          </property>
         </widget>
        </item>
       </layout>
-     </item>
-     <item>
-      <widget class="QListWidget" name="listWidget"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="closeButton">
-       <property name="text">
-        <string>Закрити</string>
-       </property>
-      </widget>
      </item>
     </layout>
    </item>

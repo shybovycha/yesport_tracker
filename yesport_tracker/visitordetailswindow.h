@@ -4,6 +4,8 @@
 #include <QtSql>
 #include <QWidget>
 
+#include "createorderwindow.h"
+
 namespace Ui {
 class VisitorDetailsWindow;
 }
@@ -15,6 +17,10 @@ class VisitorDetailsWindow : public QWidget
 public:
     explicit VisitorDetailsWindow(int visitorId, QWidget *parent = 0);
     ~VisitorDetailsWindow();
+
+private slots:
+    void on_createOrderButton_clicked();
+    void on_closeButton_clicked();
 
 private:
     int visitorId;

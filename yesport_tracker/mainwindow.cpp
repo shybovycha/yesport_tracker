@@ -1,6 +1,7 @@
 #include "visitorslistitem.h"
 #include "visitordetailswindow.h"
 #include "databaseprovider.h"
+#include "settingswindow.h"
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -144,38 +145,8 @@ void MainWindow::on_departmentsList_editTextChanged(const QString &text)
 {
     if (text.isEmpty())
     {
-        ui->addDepartmentButton->setEnabled(false);
         showAllDepartments();
         return;
-    }
-
-    ui->addDepartmentButton->setEnabled(true);
-}
-
-void MainWindow::on_addDepartmentButton_clicked()
-{
-    QString name = ui->departmentsList->currentText();
-
-    if (name.isEmpty())
-    {
-        return;
-    }
-
-    QSqlQuery query;
-
-    query.prepare("INSERT INTO departments (name) VALUES (:name)");
-    query.bindValue(":name", name);
-
-    bool res = query.exec();
-
-    if (res)
-    {
-        ui->departmentsList->addItem(name);
-    } else
-    {
-        qDebug() << DatabaseProvider::db().lastError().text();
-
-        QMessageBox::critical(this, "Error", "Something bad happened!", QMessageBox::Ok);
     }
 }
 
@@ -185,4 +156,10 @@ void MainWindow::on_usersList_itemDoubleClicked(QListWidgetItem *item)
 
     VisitorDetailsWindow *detailsWindow = new VisitorDetailsWindow(visitorId);
     detailsWindow->show();
+}
+
+void MainWindow::on_settingsButton_clicked()
+{
+    SettingsWindow* window = new SettingsWindow();
+    window->show();
 }

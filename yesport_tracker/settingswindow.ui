@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsWindow</class>
+ <widget class="QWidget" name="SettingsWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>605</width>
+    <height>367</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Налаштування</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/icons/yesport_icon.png</normaloff>:/icons/yesport_icon.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="departmentsTab">
+        <attribute name="title">
+         <string>Відділення</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="1">
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QToolButton" name="addDepartmentButton">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="general.qrc">
+               <normaloff>:/icons/images/Add.png</normaloff>:/icons/images/Add.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="removeDepartmentButton">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="general.qrc">
+               <normaloff>:/icons/images/Remove.png</normaloff>:/icons/images/Remove.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="0">
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Назва відділення</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="departmentNameEdit"/>
+           </item>
+           <item>
+            <widget class="QListWidget" name="departmentsList"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="programsTab">
+        <attribute name="title">
+         <string>Програми</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="1">
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Назва програми</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="programNameEdit"/>
+           </item>
+           <item>
+            <widget class="QListWidget" name="programsList"/>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="2">
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QToolButton" name="addProgramButton">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="general.qrc">
+               <normaloff>:/icons/images/Add.png</normaloff>:/icons/images/Add.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="removeProgramButton">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="general.qrc">
+               <normaloff>:/icons/images/Remove.png</normaloff>:/icons/images/Remove.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="closeButton">
+       <property name="text">
+        <string>закрити</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="general.qrc"/>
+ </resources>
+ <connections/>
+</ui>

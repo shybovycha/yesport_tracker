@@ -16,12 +16,21 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     visitorslistitem.cpp \
     visitordetailswindow.cpp \
-    databaseprovider.cpp
+    databaseprovider.cpp \
+    createorderwindow.cpp \
+    settingswindow.cpp
 
 HEADERS  += mainwindow.h \
     visitorslistitem.h \
     visitordetailswindow.h \
-    databaseprovider.h
+    databaseprovider.h \
+    createorderwindow.h \
+    settingswindow.h
 
 FORMS    += mainwindow.ui \
-    visitordetailswindow.ui
+    visitordetailswindow.ui \
+    createorderwindow.ui \
+    settingswindow.ui
+
+RESOURCES += \
+    general.qrc

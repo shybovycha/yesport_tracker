@@ -14,3 +14,14 @@ VisitorDetailsWindow::~VisitorDetailsWindow()
 {
     delete ui;
 }
+
+void VisitorDetailsWindow::on_createOrderButton_clicked()
+{
+    CreateOrderWindow* window = new CreateOrderWindow();
+    window->show();
+}
+
+void VisitorDetailsWindow::on_closeButton_clicked()
+{
+    this->close();
+}
