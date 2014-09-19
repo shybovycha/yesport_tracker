@@ -7,6 +7,9 @@
 #include <QMessageBox>
 #include <QListWidgetItem>
 
+#include "myapplication.h"
+#include "settingswindow.h"
+
 namespace Ui {
     class MainWindow;
 }
@@ -17,6 +20,7 @@ class MainWindow : public QWidget
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void showSettingsWindow();
     ~MainWindow();
 
 private slots:
@@ -27,12 +31,14 @@ private slots:
 
     void on_settingsButton_clicked();
 
-private:
-    void initDatabase();
+    void on_settings_window_closed();
+
+protected:
     void showAllVisitors();
     void showAllDepartments();
+    void filterVisitors();
+    void filterVisitors(const QString &text);
 
-private:
     Ui::MainWindow *ui;
 };
 

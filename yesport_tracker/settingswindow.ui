@@ -17,6 +17,12 @@
    <iconset>
     <normaloff>:/icons/yesport_icon.png</normaloff>:/icons/yesport_icon.png</iconset>
   </property>
+  <property name="toolTipDuration">
+   <number>5000</number>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -78,7 +84,14 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="departmentNameEdit"/>
+            <widget class="QLineEdit" name="departmentNameEdit">
+             <property name="toolTip">
+              <string comment="Enter department name and press plus to add one"/>
+             </property>
+             <property name="toolTipDuration">
+              <number>5000</number>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QListWidget" name="departmentsList"/>

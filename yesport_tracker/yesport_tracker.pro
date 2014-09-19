@@ -18,14 +18,16 @@ SOURCES += main.cpp\
     visitordetailswindow.cpp \
     databaseprovider.cpp \
     createorderwindow.cpp \
-    settingswindow.cpp
+    settingswindow.cpp \
+    myapplication.cpp
 
 HEADERS  += mainwindow.h \
     visitorslistitem.h \
     visitordetailswindow.h \
     databaseprovider.h \
     createorderwindow.h \
-    settingswindow.h
+    settingswindow.h \
+    myapplication.h
 
 FORMS    += mainwindow.ui \
     visitordetailswindow.ui \

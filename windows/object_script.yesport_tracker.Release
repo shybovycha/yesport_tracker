@@ -1,0 +1,14 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\visitorslistitem.o
+./release\visitordetailswindow.o
+./release\databaseprovider.o
+./release\createorderwindow.o
+./release\settingswindow.o
+./release\qrc_general.o
+./release\moc_mainwindow.o
+./release\moc_visitordetailswindow.o
+./release\moc_createorderwindow.o
+./release\moc_settingswindow.o
+);

@@ -3,9 +3,17 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    MyApplication *app = new MyApplication(argc, argv);
 
-    return a.exec();
+    app->initDatabase();
+
+    MainWindow *w = new MainWindow();
+    w->show();
+
+    if (!app->isAnyDepartmentPresent())
+    {
+        w->showSettingsWindow();
+    }
+
+    return app->exec();
 }

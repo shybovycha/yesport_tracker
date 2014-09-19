@@ -10,8 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWindow)
 {
-    this->initDatabase();
-
     ui->setupUi(this);
 
     this->showAllDepartments();
@@ -23,44 +21,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::initDatabase()
+void MainWindow::on_settings_window_closed()
 {
-    QSqlDatabase db = DatabaseProvider::db();
-
-    if (!db.isOpen())
-    {
-        QMessageBox msgBox;
-
-        msgBox.setText(tr("Failed to open database."));
-        msgBox.setIcon(QMessageBox::Critical);
-
-        if (msgBox.exec() == QMessageBox::Ok)
-        {
-            QApplication::quit();
-        }
-    }
-
-    // query.exec("CREATE TABLE IF NOT EXISTS programs_departments (program_id integer, department_id integer, primary key(program_id, department_id)");
-
-    db.exec("CREATE TABLE IF NOT EXISTS departments (id integer primary key autoincrement, name varchar(255))");
-
-    if (db.lastError().type() != QSqlError::NoError)
-        qDebug() << db.lastError();
-
-    db.exec("CREATE TABLE IF NOT EXISTS visitors (id integer primary key autoincrement, name varchar(255))");
-
-    if (db.lastError().type() != QSqlError::NoError)
-        qDebug() << db.lastError();
-
-    db.exec("CREATE TABLE IF NOT EXISTS programs (id integer primary key autoincrement, department_id integer, name varchar(355), cost real, track_visits integer)");
-
-    if (db.lastError().type() != QSqlError::NoError)
-        qDebug() << db.lastError();
-
-    db.exec("CREATE TABLE IF NOT EXISTS orders (id integer primary key autoincrement, program_id integer, visitor_id integer, created_at date, payed_until date, visits_left integer)");
-
-    if (db.lastError().type() != QSqlError::NoError)
-        qDebug() << db.lastError();
+    this->showAllDepartments();
 }
 
 void MainWindow::showAllVisitors()
@@ -69,6 +32,8 @@ void MainWindow::showAllVisitors()
 
     query.prepare("SELECT id, name FROM visitors");
     query.exec();
+
+    ui->usersList->clear();
 
     while (query.next())
     {
@@ -82,6 +47,8 @@ void MainWindow::showAllDepartments()
 
     query.prepare("SELECT id, name FROM departments");
     query.exec();
+
+    ui->departmentsList->clear();
 
     while (query.next())
     {
@@ -107,7 +74,7 @@ void MainWindow::on_addVisitorButton_clicked()
 
     if (res)
     {
-        ui->usersList->addItem(name);
+        this->filterVisitors();
     } else
     {
         qDebug() << DatabaseProvider::db().lastError().text();
@@ -116,14 +83,19 @@ void MainWindow::on_addVisitorButton_clicked()
     }
 }
 
-void MainWindow::on_quickSearchEdit_textChanged(const QString &text)
+void MainWindow::filterVisitors()
+{
+    this->filterVisitors(ui->quickSearchEdit->text());
+}
+
+void MainWindow::filterVisitors(const QString &text)
 {
     ui->usersList->clear();
 
     if (text.isEmpty())
     {
         ui->addVisitorButton->setEnabled(false);
-        showAllVisitors();
+        this->showAllVisitors();
         return;
     }
 
@@ -139,6 +111,11 @@ void MainWindow::on_quickSearchEdit_textChanged(const QString &text)
     }
 
     ui->addVisitorButton->setEnabled(true);
+}
+
+void MainWindow::on_quickSearchEdit_textChanged(const QString &text)
+{
+    this->filterVisitors(text);
 }
 
 void MainWindow::on_departmentsList_editTextChanged(const QString &text)
@@ -160,6 +137,14 @@ void MainWindow::on_usersList_itemDoubleClicked(QListWidgetItem *item)
 
 void MainWindow::on_settingsButton_clicked()
 {
+    showSettingsWindow();
+}
+
+void MainWindow::showSettingsWindow()
+{
     SettingsWindow* window = new SettingsWindow();
+
+    connect(window, SIGNAL(departmentsUpdated()), this, SLOT(on_settings_window_closed()));
+
     window->show();
 }

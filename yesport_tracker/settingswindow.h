@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QMessageBox>
+#include <QToolTip>
 
 namespace Ui {
 class SettingsWindow;
@@ -14,7 +15,13 @@ class SettingsWindow : public QWidget
 
 public:
     explicit SettingsWindow(QWidget *parent = 0);
+
     ~SettingsWindow();
+
+    void showTooltip();
+
+signals:
+    void departmentsUpdated();
 
 private slots:
     void on_closeButton_clicked();
@@ -22,6 +29,8 @@ private slots:
     void on_addDepartmentButton_clicked();
 
 private:
+    void showAllDepartments();
+
     Ui::SettingsWindow *ui;
 };
 
