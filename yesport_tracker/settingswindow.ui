@@ -29,11 +29,11 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="departmentsTab">
         <attribute name="title">
-         <string>Відділення</string>
+         <string>Секції</string>
         </attribute>
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="1">
@@ -79,7 +79,7 @@
            <item>
             <widget class="QLabel" name="label">
              <property name="text">
-              <string>Назва відділення</string>
+              <string>Назва секції:</string>
              </property>
             </widget>
            </item>
@@ -90,6 +90,9 @@
              </property>
              <property name="toolTipDuration">
               <number>5000</number>
+             </property>
+             <property name="placeholderText">
+              <string>напр. &quot;Йога&quot;</string>
              </property>
             </widget>
            </item>
@@ -102,7 +105,7 @@
        </widget>
        <widget class="QWidget" name="programsTab">
         <attribute name="title">
-         <string>Програми</string>
+         <string>Послуги</string>
         </attribute>
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="1">
@@ -110,12 +113,16 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Назва програми</string>
+              <string>Вид послуги:</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="programNameEdit"/>
+            <widget class="QLineEdit" name="programNameEdit">
+             <property name="placeholderText">
+              <string>напр. &quot;Місячний абонемент&quot;</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QListWidget" name="programsList"/>
@@ -167,7 +174,7 @@
      <item>
       <widget class="QPushButton" name="closeButton">
        <property name="text">
-        <string>закрити</string>
+        <string>Зберегти</string>
        </property>
       </widget>
      </item>

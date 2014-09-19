@@ -14,7 +14,7 @@
    <string>Відвідувач</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="general.qrc">
+   <iconset>
     <normaloff>:/icons/yesport_icon.png</normaloff>:/icons/yesport_icon.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -23,19 +23,26 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Ім’я</string>
+        <string>Ім’я та прізвище відвідувача:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="visitorNameEdit"/>
+      <widget class="QLineEdit" name="visitorNameEdit">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="placeholderText">
+        <string>напр. Іванов Степан Петрович</string>
+       </property>
+      </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Оплати</string>
+          <string>Оплачені послуги:</string>
          </property>
         </widget>
        </item>
@@ -62,8 +69,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="general.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>YESport tracker</string>
+   <string>Відвідувачі</string>
   </property>
   <property name="windowIcon">
    <iconset resource="general.qrc">
@@ -23,7 +23,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Відділення</string>
+        <string>Секція:</string>
        </property>
       </widget>
      </item>
@@ -58,7 +58,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Пошук</string>
+        <string>Пошук відвідувачів:</string>
        </property>
       </widget>
      </item>
@@ -68,6 +68,9 @@
         <widget class="QLineEdit" name="quickSearchEdit">
          <property name="acceptDrops">
           <bool>false</bool>
+         </property>
+         <property name="placeholderText">
+          <string>Ім’я або прізвище відвідувача, якого шукаємо або додаємо</string>
          </property>
          <property name="clearButtonEnabled">
           <bool>true</bool>
