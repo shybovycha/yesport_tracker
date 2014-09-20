@@ -18,14 +18,14 @@ SOURCES += main.cpp\
     createorderwindow.cpp \
     settingswindow.cpp \
     myapplication.cpp \
-    departmentslistitem.cpp
+    databaserowlistitem.cpp
 
 HEADERS  += mainwindow.h \
     visitorslistitem.h \
     createorderwindow.h \
     settingswindow.h \
     myapplication.h \
-    departmentslistitem.h
+    databaserowlistitem.h
 
 FORMS    += mainwindow.ui \
     createorderwindow.ui \

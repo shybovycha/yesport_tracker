@@ -8,6 +8,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     ui->setupUi(this);
 
     this->showAllDepartments();
+    this->showAllPrograms();
     this->showTooltip();
 }
 
@@ -59,7 +60,7 @@ void SettingsWindow::on_removeDepartmentButton_clicked()
         return;
     }
 
-    DepartmentsListItem *item = ((DepartmentsListItem*) ui->departmentsList->selectedItems().first());
+    DatabaseRowListItem *item = ((DatabaseRowListItem*) ui->departmentsList->selectedItems().first());
 
     int res = QMessageBox::question(this, tr("WARNING"), tr("Do you really want to delete `%1` section?").arg(item->text()), QMessageBox::Yes, QMessageBox::No);
 
@@ -96,7 +97,22 @@ void SettingsWindow::showAllDepartments()
 
     while (query.next())
     {
-        ui->departmentsList->addItem(new DepartmentsListItem(query.value("name").toString(), query.value("id").toInt()));
+        ui->departmentsList->addItem(new DatabaseRowListItem(query.value("name").toString(), query.value("id").toInt()));
+    }
+}
+
+void SettingsWindow::showAllPrograms()
+{
+    QSqlQuery query;
+
+    query.prepare("SELECT id, name FROM programs");
+    query.exec();
+
+    ui->programsList->clear();
+
+    while (query.next())
+    {
+        ui->programsList->addItem(new DatabaseRowListItem(query.value("name").toString(), query.value("id").toInt()));
     }
 }
 
@@ -105,4 +121,9 @@ void SettingsWindow::showTooltip()
     ui->departmentNameEdit->setToolTip(tr("Enter department name and press plus to add one"));
     ui->departmentNameEdit->setFocus();
     // QToolTip::showText(ui->departmentNameEdit->mapToGlobal(QPoint(0, 0)), tr("Enter department name and press plus to add one"));
+}
+
+void SettingsWindow::on_addProgramButton_clicked()
+{
+
 }
