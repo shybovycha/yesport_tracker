@@ -24,14 +24,12 @@ void MyApplication::initDatabase()
         }
     }
 
-    // query.exec("CREATE TABLE IF NOT EXISTS programs_departments (program_id integer, department_id integer, primary key(program_id, department_id)");
-
     db.exec("CREATE TABLE IF NOT EXISTS departments (id integer primary key autoincrement, name varchar(255))");
 
     if (db.lastError().type() != QSqlError::NoError)
         qDebug() << db.lastError();
 
-    db.exec("CREATE TABLE IF NOT EXISTS visitors (id integer primary key autoincrement, name varchar(255))");
+    db.exec("CREATE TABLE IF NOT EXISTS visitors (id integer primary key autoincrement, department_id integer, name varchar(255))");
 
     if (db.lastError().type() != QSqlError::NoError)
         qDebug() << db.lastError();

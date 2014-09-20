@@ -34,14 +34,14 @@ private slots:
     void on_create_order_window_closed();
     void on_visitorsList_itemSelectionChanged();
     void on_createOrderButton_clicked();
-
     void on_visitorNameEdit_textEdited(const QString &arg1);
 
+    void on_departmentsList_currentIndexChanged(const QString &arg1);
+
 protected:
-    void showAllVisitors();
     void showAllDepartments();
     void filterVisitors();
-    void filterVisitors(const QString &text);
+    void filterVisitors(const QString &text, int departmentId);
     void loadVisitorDetails(int visitorId);
 
     Ui::MainWindow *ui;

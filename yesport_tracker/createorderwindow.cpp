@@ -7,6 +7,8 @@ CreateOrderWindow::CreateOrderWindow(int visitorId, QWidget *parent) :
     visitorId(visitorId)
 {
     ui->setupUi(this);
+
+    showAllPrograms();
 }
 
 CreateOrderWindow::~CreateOrderWindow()
@@ -43,4 +45,21 @@ void CreateOrderWindow::on_cancelButton_clicked()
     emit closed();
 
     this->close();
+}
+
+void CreateOrderWindow::showAllPrograms()
+{
+    QSqlQuery query;
+
+    query.exec("SELECT id, name FROM programs");
+
+    ui->programsList->clear();
+
+    while (query.next())
+    {
+        int id = query.value("id").toInt();
+        QString name = query.value("name").toString();
+
+        ui->programsList->addItem(name, id);
+    }
 }

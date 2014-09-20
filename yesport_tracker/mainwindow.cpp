@@ -11,9 +11,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     this->showAllDepartments();
-    this->showAllVisitors();
+    this->filterVisitors();
 
     ui->visitorDetailsFrame->setEnabled(false);
+    this->showMaximized();
 }
 
 MainWindow::~MainWindow()
@@ -24,21 +25,6 @@ MainWindow::~MainWindow()
 void MainWindow::on_settings_window_closed()
 {
     this->showAllDepartments();
-}
-
-void MainWindow::showAllVisitors()
-{
-    QSqlQuery query;
-
-    query.prepare("SELECT id, name FROM visitors");
-    query.exec();
-
-    ui->visitorsList->clear();
-
-    while (query.next())
-    {
-        ui->visitorsList->addItem(new VisitorsListItem(query.value(1).toString(), query.value(0).toInt()));
-    }
 }
 
 void MainWindow::showAllDepartments()
@@ -52,7 +38,7 @@ void MainWindow::showAllDepartments()
 
     while (query.next())
     {
-        ui->departmentsList->addItem(query.value(1).toString());
+        ui->departmentsList->addItem(query.value("name").toString(), query.value("id").toInt());
     }
 }
 
@@ -67,9 +53,9 @@ void MainWindow::on_addVisitorButton_clicked()
 
     QSqlQuery query;
 
-    query.prepare("INSERT INTO visitors (name) VALUES (:name)");
+    query.prepare("INSERT INTO visitors (name, department_id) VALUES (:name, :department_id)");
     query.bindValue(":name", name);
-
+    query.bindValue(":department_id", ui->departmentsList->itemData(ui->departmentsList->currentIndex()).toInt());
     bool res = query.exec();
 
     if (res)
@@ -83,29 +69,32 @@ void MainWindow::on_addVisitorButton_clicked()
 
 void MainWindow::filterVisitors()
 {
-    this->filterVisitors(ui->quickSearchEdit->text());
+    this->filterVisitors(ui->quickSearchEdit->text(), ui->departmentsList->itemData(ui->departmentsList->currentIndex()).toInt());
 }
 
-void MainWindow::filterVisitors(const QString &text)
+void MainWindow::filterVisitors(const QString &text, int departmentId)
 {
     ui->visitorsList->clear();
+
+    QSqlQuery query;
 
     if (text.isEmpty())
     {
         ui->addVisitorButton->setEnabled(false);
-        this->showAllVisitors();
-        return;
+        query.prepare("SELECT id, name FROM visitors WHERE department_id = :department_id");
+        query.bindValue(":department_id", departmentId);
+    } else
+    {
+        query.prepare("SELECT id, name FROM visitors WHERE name LIKE :name AND department_id = :department_id");
+        query.bindValue(":name", QString("%%%1%%").arg(text));
+        query.bindValue(":department_id", departmentId);
     }
 
-    QSqlQuery query;
-
-    query.prepare("SELECT id, name FROM visitors WHERE name LIKE :name");
-    query.bindValue(":name", QString("%%%1%%").arg(text));
     query.exec();
 
     while (query.next())
     {
-        ui->visitorsList->addItem(new VisitorsListItem(query.value(1).toString(), query.value(0).toInt()));
+        ui->visitorsList->addItem(new VisitorsListItem(query.value("name").toString(), query.value("id").toInt()));
     }
 
     ui->addVisitorButton->setEnabled(true);
@@ -113,7 +102,7 @@ void MainWindow::filterVisitors(const QString &text)
 
 void MainWindow::on_quickSearchEdit_textChanged(const QString &text)
 {
-    this->filterVisitors(text);
+    this->filterVisitors(text, ui->departmentsList->itemData(ui->departmentsList->currentIndex()).toInt());
 }
 
 void MainWindow::on_departmentsList_editTextChanged(const QString &text)
@@ -229,4 +218,9 @@ void MainWindow::on_createOrderButton_clicked()
 void MainWindow::on_visitorNameEdit_textEdited(const QString &arg1)
 {
     ui->saveVisitorDetailsButton->setEnabled(true);
+}
+
+void MainWindow::on_departmentsList_currentIndexChanged(const QString &arg1)
+{
+    this->filterVisitors();
 }

@@ -26,7 +26,9 @@ private slots:
 
     void on_cancelButton_clicked();
 
-private:
+protected:
+    void showAllPrograms();
+
     Ui::CreateOrderWindow *ui;
     int visitorId;
 };
