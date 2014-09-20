@@ -1,6 +1,4 @@
 #include "visitorslistitem.h"
-#include "visitordetailswindow.h"
-#include "databaseprovider.h"
 #include "settingswindow.h"
 
 #include "mainwindow.h"
@@ -35,11 +33,11 @@ void MainWindow::showAllVisitors()
     query.prepare("SELECT id, name FROM visitors");
     query.exec();
 
-    ui->usersList->clear();
+    ui->visitorsList->clear();
 
     while (query.next())
     {
-        ui->usersList->addItem(new VisitorsListItem(query.value(1).toString(), query.value(0).toInt()));
+        ui->visitorsList->addItem(new VisitorsListItem(query.value(1).toString(), query.value(0).toInt()));
     }
 }
 
@@ -79,8 +77,6 @@ void MainWindow::on_addVisitorButton_clicked()
         this->filterVisitors();
     } else
     {
-        qDebug() << DatabaseProvider::db().lastError().text();
-
         QMessageBox::critical(this, "Error", "Something bad happened!", QMessageBox::Ok);
     }
 }
@@ -92,7 +88,7 @@ void MainWindow::filterVisitors()
 
 void MainWindow::filterVisitors(const QString &text)
 {
-    ui->usersList->clear();
+    ui->visitorsList->clear();
 
     if (text.isEmpty())
     {
@@ -109,7 +105,7 @@ void MainWindow::filterVisitors(const QString &text)
 
     while (query.next())
     {
-        ui->usersList->addItem(new VisitorsListItem(query.value(1).toString(), query.value(0).toInt()));
+        ui->visitorsList->addItem(new VisitorsListItem(query.value(1).toString(), query.value(0).toInt()));
     }
 
     ui->addVisitorButton->setEnabled(true);
@@ -129,16 +125,6 @@ void MainWindow::on_departmentsList_editTextChanged(const QString &text)
     }
 }
 
-void MainWindow::on_usersList_itemDoubleClicked(QListWidgetItem *item)
-{
-    // int visitorId = ((VisitorsListItem*) item)->getId();
-
-    ui->visitorDetailsFrame->setEnabled(true);
-
-    // VisitorDetailsWindow *detailsWindow = new VisitorDetailsWindow(visitorId);
-    // detailsWindow->show();
-}
-
 void MainWindow::on_settingsButton_clicked()
 {
     showSettingsWindow();
@@ -151,4 +137,96 @@ void MainWindow::showSettingsWindow()
     connect(window, SIGNAL(departmentsUpdated()), this, SLOT(on_settings_window_closed()));
 
     window->show();
+}
+
+void MainWindow::on_visitorsList_itemSelectionChanged()
+{
+    if (ui->visitorsList->selectedItems().empty())
+    {
+        ui->visitorDetailsFrame->setEnabled(false);
+        return;
+    }
+
+    VisitorsListItem* item = (VisitorsListItem*) ui->visitorsList->selectedItems().first();
+
+    int visitorId = item->getId();
+
+    loadVisitorDetails(visitorId);
+}
+
+void MainWindow::loadVisitorDetails(int visitorId)
+{
+    if (visitorId < 1)
+    {
+        ui->visitorDetailsFrame->setEnabled(false);
+        return;
+    }
+
+    QSqlQuery query;
+
+    query.prepare("SELECT id, name FROM visitors WHERE id = :visitorId LIMIT 1");
+    query.bindValue(":visitorId", visitorId);
+    query.exec();
+
+    QString visitorName;
+
+    while (query.next())
+    {
+        visitorName = query.value("name").toString();
+    }
+
+    if (visitorName.isEmpty())
+    {
+        ui->visitorDetailsFrame->setEnabled(false);
+        return;
+    }
+
+    ui->visitorNameEdit->setText(visitorName);
+
+    query.prepare("SELECT created_at, amount, payed_until FROM orders WHERE visitor_id = :visitorId");
+    query.bindValue(":visitorId", visitorId);
+    query.exec();
+
+    ui->visitorOrdersList->clear();
+
+    while (query.next())
+    {
+        QDate created_at = query.value("created_at").toDate();
+        QDate payed_until = query.value("payed_until").toDate();
+
+        float amount = query.value("amount").toFloat();
+        QString created_at_str = created_at.toString("dd MMM yyyy");
+        QString payed_until_str = payed_until.toString("dd MMM yyyy");
+
+        ui->visitorOrdersList->addItem(tr("%1 - %2 UAH until %3").arg(created_at_str).arg(amount).arg(payed_until_str));
+    }
+
+    ui->visitorDetailsFrame->setEnabled(true);
+}
+
+void MainWindow::on_create_order_window_closed()
+{
+    VisitorsListItem* item = (VisitorsListItem*) ui->visitorsList->selectedItems().first();
+
+    int visitorId = item->getId();
+
+    loadVisitorDetails(visitorId);
+}
+
+void MainWindow::on_createOrderButton_clicked()
+{
+    VisitorsListItem* item = (VisitorsListItem*) ui->visitorsList->selectedItems().first();
+
+    int visitorId = item->getId();
+
+    CreateOrderWindow* window = new CreateOrderWindow(visitorId);
+
+    connect(window, SIGNAL(closed()), this, SLOT(on_create_order_window_closed()));
+
+    window->show();
+}
+
+void MainWindow::on_visitorNameEdit_textEdited(const QString &arg1)
+{
+    ui->saveVisitorDetailsButton->setEnabled(true);
 }

@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QDebug>
+#include <QSqlDatabase>
+#include <QSqlQuery>
 
 namespace Ui {
 class CreateOrderWindow;
@@ -13,8 +15,11 @@ class CreateOrderWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit CreateOrderWindow(QWidget *parent = 0);
+    explicit CreateOrderWindow(int visitorId, QWidget *parent = 0);
     ~CreateOrderWindow();
+
+signals:
+    void closed();
 
 private slots:
     void on_createOrderButton_clicked();
@@ -23,6 +28,7 @@ private slots:
 
 private:
     Ui::CreateOrderWindow *ui;
+    int visitorId;
 };
 
 #endif // CREATEORDERWINDOW_H

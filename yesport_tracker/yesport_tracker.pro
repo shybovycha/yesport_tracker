@@ -15,16 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     visitorslistitem.cpp \
-    visitordetailswindow.cpp \
-    databaseprovider.cpp \
     createorderwindow.cpp \
     settingswindow.cpp \
     myapplication.cpp
 
 HEADERS  += mainwindow.h \
     visitorslistitem.h \
-    visitordetailswindow.h \
-    databaseprovider.h \
     createorderwindow.h \
     settingswindow.h \
     myapplication.h

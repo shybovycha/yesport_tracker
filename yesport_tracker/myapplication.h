@@ -3,10 +3,10 @@
 
 #include <QApplication>
 #include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
 #include <QDebug>
 #include <QMessageBox>
-
-#include "databaseprovider.h"
 
 class MyApplication : public QApplication
 {

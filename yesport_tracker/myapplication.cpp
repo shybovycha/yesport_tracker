@@ -6,9 +6,12 @@ MyApplication::MyApplication(int argc, char **argv) : QApplication(argc, argv)
 
 void MyApplication::initDatabase()
 {
-    QSqlDatabase db = DatabaseProvider::db();
+    QSqlDatabase db;
 
-    if (!db.isOpen())
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("yesport_database.sqlite");
+
+    if (!db.open())
     {
         QMessageBox msgBox;
 
@@ -38,7 +41,7 @@ void MyApplication::initDatabase()
     if (db.lastError().type() != QSqlError::NoError)
         qDebug() << db.lastError();
 
-    db.exec("CREATE TABLE IF NOT EXISTS orders (id integer primary key autoincrement, program_id integer, visitor_id integer, created_at date, payed_until date, visits_left integer)");
+    db.exec("CREATE TABLE IF NOT EXISTS orders (id integer primary key autoincrement, program_id integer, visitor_id integer, created_at date, payed_until date, visits_left integer, amount real)");
 
     if (db.lastError().type() != QSqlError::NoError)
         qDebug() << db.lastError();

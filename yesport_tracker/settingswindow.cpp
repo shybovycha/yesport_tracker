@@ -45,8 +45,6 @@ void SettingsWindow::on_addDepartmentButton_clicked()
         this->showAllDepartments();
     } else
     {
-        qDebug() << DatabaseProvider::db().lastError().text();
-
         QMessageBox::critical(this, "Error", "Something bad happened!", QMessageBox::Ok);
     }
 

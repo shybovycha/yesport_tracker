@@ -101,7 +101,11 @@
            </layout>
           </item>
           <item>
-           <widget class="QListWidget" name="usersList"/>
+           <widget class="QListWidget" name="visitorsList">
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -155,10 +159,13 @@
            </layout>
           </item>
           <item>
-           <widget class="QListWidget" name="listWidget"/>
+           <widget class="QListWidget" name="visitorOrdersList"/>
           </item>
           <item>
-           <widget class="QPushButton" name="closeButton">
+           <widget class="QPushButton" name="saveVisitorDetailsButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Зберегти</string>
             </property>
