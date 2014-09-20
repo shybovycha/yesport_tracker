@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->showAllDepartments();
     this->showAllVisitors();
+
+    ui->visitorDetailsFrame->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -129,10 +131,12 @@ void MainWindow::on_departmentsList_editTextChanged(const QString &text)
 
 void MainWindow::on_usersList_itemDoubleClicked(QListWidgetItem *item)
 {
-    int visitorId = ((VisitorsListItem*) item)->getId();
+    // int visitorId = ((VisitorsListItem*) item)->getId();
 
-    VisitorDetailsWindow *detailsWindow = new VisitorDetailsWindow(visitorId);
-    detailsWindow->show();
+    ui->visitorDetailsFrame->setEnabled(true);
+
+    // VisitorDetailsWindow *detailsWindow = new VisitorDetailsWindow(visitorId);
+    // detailsWindow->show();
 }
 
 void MainWindow::on_settingsButton_clicked()

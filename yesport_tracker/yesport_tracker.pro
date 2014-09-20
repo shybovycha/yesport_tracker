@@ -30,7 +30,6 @@ HEADERS  += mainwindow.h \
     myapplication.h
 
 FORMS    += mainwindow.ui \
-    visitordetailswindow.ui \
     createorderwindow.ui \
     settingswindow.ui
 
