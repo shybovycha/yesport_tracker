@@ -97,8 +97,10 @@ public:
     void retranslateUi(QWidget *VisitorDetailsWindow)
     {
         VisitorDetailsWindow->setWindowTitle(QApplication::translate("VisitorDetailsWindow", "\320\222\321\226\320\264\320\262\321\226\320\264\321\203\320\262\320\260\321\207", 0));
-        label->setText(QApplication::translate("VisitorDetailsWindow", "\320\206\320\274\342\200\231\321\217", 0));
-        label_2->setText(QApplication::translate("VisitorDetailsWindow", "\320\236\320\277\320\273\320\260\321\202\320\270", 0));
+        label->setText(QApplication::translate("VisitorDetailsWindow", "\320\206\320\274\342\200\231\321\217 \321\202\320\260 \320\277\321\200\321\226\320\267\320\262\320\270\321\211\320\265 \320\262\321\226\320\264\320\262\321\226\320\264\321\203\320\262\320\260\321\207\320\260:", 0));
+        visitorNameEdit->setText(QString());
+        visitorNameEdit->setPlaceholderText(QApplication::translate("VisitorDetailsWindow", "\320\275\320\260\320\277\321\200. \320\206\320\262\320\260\320\275\320\276\320\262 \320\241\321\202\320\265\320\277\320\260\320\275 \320\237\320\265\321\202\321\200\320\276\320\262\320\270\321\207", 0));
+        label_2->setText(QApplication::translate("VisitorDetailsWindow", "\320\236\320\277\320\273\320\260\321\207\320\265\320\275\321\226 \320\277\320\276\321\201\320\273\321\203\320\263\320\270:", 0));
         createOrderButton->setText(QApplication::translate("VisitorDetailsWindow", "\320\224\320\276\320\264\320\260\321\202\320\270", 0));
         closeButton->setText(QApplication::translate("VisitorDetailsWindow", "\320\227\320\260\320\272\321\200\320\270\321\202\320\270", 0));
     } // retranslateUi

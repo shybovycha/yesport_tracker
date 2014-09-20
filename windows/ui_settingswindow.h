@@ -60,6 +60,8 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/icons/yesport_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         SettingsWindow->setWindowIcon(icon);
+        SettingsWindow->setToolTipDuration(5000);
+        SettingsWindow->setStyleSheet(QStringLiteral(""));
         gridLayout_3 = new QGridLayout(SettingsWindow);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         verticalLayout_2 = new QVBoxLayout();
@@ -102,6 +104,7 @@ public:
 
         departmentNameEdit = new QLineEdit(departmentsTab);
         departmentNameEdit->setObjectName(QStringLiteral("departmentNameEdit"));
+        departmentNameEdit->setToolTipDuration(5000);
 
         verticalLayout_4->addWidget(departmentNameEdit);
 
@@ -183,13 +186,18 @@ public:
         SettingsWindow->setWindowTitle(QApplication::translate("SettingsWindow", "\320\235\320\260\320\273\320\260\321\210\321\202\321\203\320\262\320\260\320\275\320\275\321\217", 0));
         addDepartmentButton->setText(QString());
         removeDepartmentButton->setText(QString());
-        label->setText(QApplication::translate("SettingsWindow", "\320\235\320\260\320\267\320\262\320\260 \320\262\321\226\320\264\320\264\321\226\320\273\320\265\320\275\320\275\321\217", 0));
-        tabWidget->setTabText(tabWidget->indexOf(departmentsTab), QApplication::translate("SettingsWindow", "\320\222\321\226\320\264\320\264\321\226\320\273\320\265\320\275\320\275\321\217", 0));
-        label_2->setText(QApplication::translate("SettingsWindow", "\320\235\320\260\320\267\320\262\320\260 \320\277\321\200\320\276\320\263\321\200\320\260\320\274\320\270", 0));
+        label->setText(QApplication::translate("SettingsWindow", "\320\235\320\260\320\267\320\262\320\260 \321\201\320\265\320\272\321\206\321\226\321\227:", 0));
+#ifndef QT_NO_TOOLTIP
+        departmentNameEdit->setToolTip(QString());
+#endif // QT_NO_TOOLTIP
+        departmentNameEdit->setPlaceholderText(QApplication::translate("SettingsWindow", "\320\275\320\260\320\277\321\200. \"\320\231\320\276\320\263\320\260\"", 0));
+        tabWidget->setTabText(tabWidget->indexOf(departmentsTab), QApplication::translate("SettingsWindow", "\320\241\320\265\320\272\321\206\321\226\321\227", 0));
+        label_2->setText(QApplication::translate("SettingsWindow", "\320\222\320\270\320\264 \320\277\320\276\321\201\320\273\321\203\320\263\320\270:", 0));
+        programNameEdit->setPlaceholderText(QApplication::translate("SettingsWindow", "\320\275\320\260\320\277\321\200. \"\320\234\321\226\321\201\321\217\321\207\320\275\320\270\320\271 \320\260\320\261\320\276\320\275\320\265\320\274\320\265\320\275\321\202\"", 0));
         addProgramButton->setText(QString());
         removeProgramButton->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(programsTab), QApplication::translate("SettingsWindow", "\320\237\321\200\320\276\320\263\321\200\320\260\320\274\320\270", 0));
-        closeButton->setText(QApplication::translate("SettingsWindow", "\320\267\320\260\320\272\321\200\320\270\321\202\320\270", 0));
+        tabWidget->setTabText(tabWidget->indexOf(programsTab), QApplication::translate("SettingsWindow", "\320\237\320\276\321\201\320\273\321\203\320\263\320\270", 0));
+        closeButton->setText(QApplication::translate("SettingsWindow", "\320\227\320\261\320\265\321\200\320\265\320\263\321\202\320\270", 0));
     } // retranslateUi
 
 };

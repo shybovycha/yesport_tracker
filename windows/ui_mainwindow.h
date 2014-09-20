@@ -126,10 +126,11 @@ public:
 
     void retranslateUi(QWidget *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "YESport tracker", 0));
-        label_2->setText(QApplication::translate("MainWindow", "\320\222\321\226\320\264\320\264\321\226\320\273\320\265\320\275\320\275\321\217", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\320\222\321\226\320\264\320\262\321\226\320\264\321\203\320\262\320\260\321\207\321\226", 0));
+        label_2->setText(QApplication::translate("MainWindow", "\320\241\320\265\320\272\321\206\321\226\321\217:", 0));
         settingsButton->setText(QString());
-        label->setText(QApplication::translate("MainWindow", "\320\237\320\276\321\210\321\203\320\272", 0));
+        label->setText(QApplication::translate("MainWindow", "\320\237\320\276\321\210\321\203\320\272 \320\262\321\226\320\264\320\262\321\226\320\264\321\203\320\262\320\260\321\207\321\226\320\262:", 0));
+        quickSearchEdit->setPlaceholderText(QApplication::translate("MainWindow", "\320\206\320\274\342\200\231\321\217 \320\260\320\261\320\276 \320\277\321\200\321\226\320\267\320\262\320\270\321\211\320\265 \320\262\321\226\320\264\320\262\321\226\320\264\321\203\320\262\320\260\321\207\320\260, \321\217\320\272\320\276\320\263\320\276 \321\210\321\203\320\272\320\260\321\224\320\274\320\276 \320\260\320\261\320\276 \320\264\320\276\320\264\320\260\321\224\320\274\320\276", 0));
         addVisitorButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\264\320\260\321\202\320\270", 0));
     } // retranslateUi
 

@@ -6,9 +6,11 @@ INPUT(
 ./debug\databaseprovider.o
 ./debug\createorderwindow.o
 ./debug\settingswindow.o
+./debug\myapplication.o
 ./debug\qrc_general.o
 ./debug\moc_mainwindow.o
 ./debug\moc_visitordetailswindow.o
 ./debug\moc_createorderwindow.o
 ./debug\moc_settingswindow.o
+./debug\moc_myapplication.o
 );
