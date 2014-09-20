@@ -70,6 +70,7 @@ public:
 
         amountEdit = new QDoubleSpinBox(CreateOrderWindow);
         amountEdit->setObjectName(QStringLiteral("amountEdit"));
+        amountEdit->setMaximum(9999.99);
 
         verticalLayout->addWidget(amountEdit);
 
