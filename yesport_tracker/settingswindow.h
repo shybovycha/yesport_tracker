@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <QMessageBox>
 #include <QToolTip>
+#include <QSqlQuery>
+
+#include "departmentslistitem.h"
 
 namespace Ui {
 class SettingsWindow;
@@ -27,6 +30,8 @@ private slots:
     void on_closeButton_clicked();
 
     void on_addDepartmentButton_clicked();
+
+    void on_removeDepartmentButton_clicked();
 
 private:
     void showAllDepartments();

@@ -1,4 +1,3 @@
-#include "databaseprovider.h"
 #include "settingswindow.h"
 #include "ui_settingswindow.h"
 
@@ -30,6 +29,7 @@ void SettingsWindow::on_addDepartmentButton_clicked()
 
     if (name.isEmpty())
     {
+        QMessageBox::warning(this, tr("Error"), tr("Could not create nothing"), QMessageBox::Ok);
         return;
     }
 
@@ -45,10 +45,44 @@ void SettingsWindow::on_addDepartmentButton_clicked()
         this->showAllDepartments();
     } else
     {
-        QMessageBox::critical(this, "Error", "Something bad happened!", QMessageBox::Ok);
+        QMessageBox::critical(this, tr("Error"), tr("Something bad happened!"), QMessageBox::Ok);
     }
 
     emit departmentsUpdated();
+}
+
+void SettingsWindow::on_removeDepartmentButton_clicked()
+{
+    if (ui->departmentsList->selectedItems().empty())
+    {
+        QMessageBox::warning(this, tr("Error"), tr("Could not remove nothing"), QMessageBox::Ok);
+        return;
+    }
+
+    DepartmentsListItem *item = ((DepartmentsListItem*) ui->departmentsList->selectedItems().first());
+
+    int res = QMessageBox::question(this, tr("WARNING"), tr("Do you really want to delete `%1` section?").arg(item->text()), QMessageBox::Yes, QMessageBox::No);
+
+    if (res == QMessageBox::No)
+    {
+        return;
+    }
+
+    QSqlQuery query;
+
+    query.prepare("DELETE FROM departments WHERE id = :department_id");
+    query.bindValue(":department_id", item->getId());
+    bool success = query.exec();
+
+    if (success)
+    {
+        QMessageBox::information(this, tr("Notice"), tr("Removed section successfully"), QMessageBox::Ok);
+    } else
+    {
+        QMessageBox::critical(this, tr("Error"), tr("Could not remove section"), QMessageBox::Ok);
+    }
+
+    this->showAllDepartments();
 }
 
 void SettingsWindow::showAllDepartments()
@@ -62,7 +96,7 @@ void SettingsWindow::showAllDepartments()
 
     while (query.next())
     {
-        ui->departmentsList->addItem(query.value(1).toString());
+        ui->departmentsList->addItem(new DepartmentsListItem(query.value("name").toString(), query.value("id").toInt()));
     }
 }
 

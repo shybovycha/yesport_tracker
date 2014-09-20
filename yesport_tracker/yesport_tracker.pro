@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     visitorslistitem.cpp \
     createorderwindow.cpp \
     settingswindow.cpp \
-    myapplication.cpp
+    myapplication.cpp \
+    departmentslistitem.cpp
 
 HEADERS  += mainwindow.h \
     visitorslistitem.h \
     createorderwindow.h \
     settingswindow.h \
-    myapplication.h
+    myapplication.h \
+    departmentslistitem.h
 
 FORMS    += mainwindow.ui \
     createorderwindow.ui \
