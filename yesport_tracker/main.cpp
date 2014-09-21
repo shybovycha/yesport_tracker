@@ -38,9 +38,9 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext &context, const Q
 
 int main(int argc, char *argv[])
 {
-    QApplication *app = new QApplication(argc, argv);
-
     qInstallMessageHandler(myMessageHandler);
+
+    QApplication *app = new QApplication(argc, argv);
 
     QTranslator qtTranslator;
     qtTranslator.load(QLocale::system().name());
