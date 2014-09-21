@@ -43,7 +43,9 @@ int main(int argc, char *argv[])
     QApplication *app = new QApplication(argc, argv);
 
     QTranslator qtTranslator;
-    qtTranslator.load(QLocale::system().name());
+    // add russian locale
+    // qtTranslator.load(QLocale::system().name());
+    qtTranslator.load("uk_UA");
     app->installTranslator(&qtTranslator);
 
     DatabaseProvider::initDatabase();
