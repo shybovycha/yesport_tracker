@@ -1,0 +1,2 @@
+Warning: QMetaObject::connectSlotsByName: No matching signal for on_settings_window_closed()
+Warning: QMetaObject::connectSlotsByName: No matching signal for on_create_order_window_closed()
