@@ -86,6 +86,70 @@ void SettingsWindow::on_removeDepartmentButton_clicked()
     this->showAllDepartments();
 }
 
+void SettingsWindow::on_addProgramButton_clicked()
+{
+    QString name = ui->programNameEdit->text();
+
+    if (name.isEmpty())
+    {
+        QMessageBox::warning(this, tr("Error"), tr("Could not create nothing"), QMessageBox::Ok);
+        return;
+    }
+
+    QSqlQuery query;
+
+    query.prepare("INSERT INTO programs (name) VALUES (:name)");
+    query.bindValue(":name", name);
+
+    bool res = query.exec();
+
+    if (res)
+    {
+        this->showAllPrograms();
+    } else
+    {
+        QMessageBox::critical(this, tr("Error"), tr("Something bad happened!"), QMessageBox::Ok);
+    }
+
+    emit programsUpdated();
+}
+
+void SettingsWindow::on_removeProgramButton_clicked()
+{
+    if (ui->programsList->selectedItems().empty())
+    {
+        QMessageBox::warning(this, tr("Error"), tr("Could not remove nothing"), QMessageBox::Ok);
+        return;
+    }
+
+    DatabaseRowListItem *item = ((DatabaseRowListItem*) ui->programsList->selectedItems().first());
+
+    int res = QMessageBox::question(this, tr("WARNING"), tr("Do you really want to delete `%1` service?").arg(item->text()), QMessageBox::Yes, QMessageBox::No);
+
+    if (res == QMessageBox::No)
+    {
+        return;
+    }
+
+    QSqlQuery query;
+
+    query.prepare("DELETE FROM programs WHERE id = :program_id");
+    query.bindValue(":program_id", item->getId());
+    bool success = query.exec();
+
+    if (success)
+    {
+        QMessageBox::information(this, tr("Notice"), tr("Removed service successfully"), QMessageBox::Ok);
+    } else
+    {
+        QMessageBox::critical(this, tr("Error"), tr("Could not remove service"), QMessageBox::Ok);
+    }
+
+    this->showAllPrograms();
+
+    emit programsUpdated();
+}
+
 void SettingsWindow::showAllDepartments()
 {
     QSqlQuery query;
@@ -123,7 +187,56 @@ void SettingsWindow::showTooltip()
     // QToolTip::showText(ui->departmentNameEdit->mapToGlobal(QPoint(0, 0)), tr("Enter department name and press plus to add one"));
 }
 
-void SettingsWindow::on_addProgramButton_clicked()
+void SettingsWindow::on_departmentsList_itemSelectionChanged()
 {
+    if (ui->departmentsList->selectedItems().size() < 1)
+    {
+        ui->removeDepartmentButton->setEnabled(false);
+    } else
+    {
+        ui->removeDepartmentButton->setEnabled(true);
+    }
+}
 
+void SettingsWindow::on_departmentNameEdit_textEdited(const QString &text)
+{
+    if (text.isEmpty())
+    {
+        ui->addDepartmentButton->setEnabled(false);
+    } else
+    {
+        ui->addDepartmentButton->setEnabled(true);
+    }
+}
+
+void SettingsWindow::on_programsList_itemSelectionChanged()
+{
+    if (ui->programsList->selectedItems().size() < 1)
+    {
+        ui->removeProgramButton->setEnabled(false);
+    } else
+    {
+        ui->removeProgramButton->setEnabled(true);
+    }
+}
+
+void SettingsWindow::on_programNameEdit_textEdited(const QString &text)
+{
+    if (text.isEmpty())
+    {
+        ui->addProgramButton->setEnabled(false);
+    } else
+    {
+        ui->addProgramButton->setEnabled(true);
+    }
+}
+
+void SettingsWindow::activateDepartmentsTab()
+{
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->indexOf(ui->departmentsTab));
+}
+
+void SettingsWindow::activateProgramsTab()
+{
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->indexOf(ui->programsTab));
 }

@@ -8,7 +8,7 @@ CreateOrderWindow::CreateOrderWindow(int visitorId, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    showAllPrograms();
+    this->showAllPrograms();
 }
 
 CreateOrderWindow::~CreateOrderWindow()
@@ -62,4 +62,9 @@ void CreateOrderWindow::showAllPrograms()
 
         ui->programsList->addItem(name, id);
     }
+}
+
+void CreateOrderWindow::on_settings_window_programsUpdated()
+{
+    this->showAllPrograms();
 }

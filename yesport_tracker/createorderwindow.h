@@ -6,6 +6,8 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
+#include "settingswindow.h"
+
 namespace Ui {
 class CreateOrderWindow;
 }
@@ -23,8 +25,8 @@ signals:
 
 private slots:
     void on_createOrderButton_clicked();
-
     void on_cancelButton_clicked();
+    void on_settings_window_programsUpdated();
 
 protected:
     void showAllPrograms();

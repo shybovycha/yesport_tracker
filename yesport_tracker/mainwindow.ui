@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Відвідувачі</string>
+   <string>Visitors</string>
   </property>
   <property name="windowIcon">
    <iconset resource="general.qrc">
@@ -34,7 +34,7 @@
           <item>
            <widget class="QLabel" name="label_11">
             <property name="text">
-             <string>Секція:</string>
+             <string>Section:</string>
             </property>
            </widget>
           </item>
@@ -69,7 +69,7 @@
           <item>
            <widget class="QLabel" name="label_12">
             <property name="text">
-             <string>Пошук відвідувачів:</string>
+             <string>Search for visitors:</string>
             </property>
            </widget>
           </item>
@@ -81,7 +81,7 @@
                <bool>false</bool>
               </property>
               <property name="placeholderText">
-               <string>Ім’я або прізвище відвідувача, якого шукаємо або додаємо</string>
+               <string>Visitor name to find or create</string>
               </property>
               <property name="clearButtonEnabled">
                <bool>true</bool>
@@ -94,7 +94,7 @@
                <bool>false</bool>
               </property>
               <property name="text">
-               <string>Додати</string>
+               <string>Create</string>
               </property>
              </widget>
             </item>
@@ -126,7 +126,7 @@
           <item>
            <widget class="QLabel" name="label_9">
             <property name="text">
-             <string>Ім’я та прізвище відвідувача:</string>
+             <string>Visitor name:</string>
             </property>
            </widget>
           </item>
@@ -136,7 +136,7 @@
              <string/>
             </property>
             <property name="placeholderText">
-             <string>напр. Іванов Степан Петрович</string>
+             <string>for ex.: Mark Rudolf Junior</string>
             </property>
            </widget>
           </item>
@@ -145,14 +145,14 @@
             <item>
              <widget class="QLabel" name="label_10">
               <property name="text">
-               <string>Оплачені послуги:</string>
+               <string>Payments:</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="createOrderButton">
               <property name="text">
-               <string>Створити оплату</string>
+               <string>Create payment</string>
               </property>
              </widget>
             </item>
@@ -167,7 +167,7 @@
              <bool>false</bool>
             </property>
             <property name="text">
-             <string>Зберегти</string>
+             <string>Save</string>
             </property>
            </widget>
           </item>

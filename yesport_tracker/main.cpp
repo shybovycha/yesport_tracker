@@ -1,18 +1,60 @@
 #include "mainwindow.h"
+
 #include <QApplication>
+#include <QFile>
+#include <QTextStream>
+
+void myMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QString txt;
+
+    switch (type)
+    {
+        case QtDebugMsg:
+            txt = QString("Debug: %1").arg(msg);
+        break;
+
+        case QtWarningMsg:
+            txt = QString("Warning: %1").arg(msg);
+        break;
+
+        case QtCriticalMsg:
+            txt = QString("Critical: %1").arg(msg);
+        break;
+
+        case QtFatalMsg:
+            txt = QString("Fatal: %1").arg(msg);
+            abort();
+    }
+
+    QFile outFile("yesport_tracker.log");
+
+    outFile.open(QIODevice::WriteOnly | QIODevice::Append);
+
+    QTextStream ts(&outFile);
+
+    ts << txt << endl;
+}
 
 int main(int argc, char *argv[])
 {
-    MyApplication *app = new MyApplication(argc, argv);
+    QApplication *app = new QApplication(argc, argv);
 
-    app->initDatabase();
+    qInstallMessageHandler(myMessageHandler);
 
-    MainWindow *w = new MainWindow();
-    w->show();
+    QTranslator qtTranslator;
+    qtTranslator.load(QLocale::system().name());
+    app->installTranslator(&qtTranslator);
 
-    if (!app->isAnyDepartmentPresent())
+    DatabaseProvider::initDatabase();
+
+    MainWindow *window = new MainWindow();
+    window->show();
+
+    if (!DatabaseProvider::isAnyDepartmentPresent())
     {
-        w->showSettingsWindow();
+        QMessageBox::information(window, QObject::tr("Information"), QObject::tr("There are no sections in the database. Create a few in this window, please. Here, as well, you may create services to set them for payments later."), QMessageBox::Ok);
+        window->showSettingsWindow();
     }
 
     return app->exec();

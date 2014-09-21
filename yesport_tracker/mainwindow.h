@@ -8,8 +8,9 @@
 #include <QListWidgetItem>
 #include <QList>
 
-#include "myapplication.h"
+#include "databaseprovider.h"
 #include "settingswindow.h"
+#include "databaserowlistitem.h"
 #include "createorderwindow.h"
 
 namespace Ui {

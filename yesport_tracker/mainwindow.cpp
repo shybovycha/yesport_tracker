@@ -1,6 +1,3 @@
-#include "visitorslistitem.h"
-#include "settingswindow.h"
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -94,7 +91,7 @@ void MainWindow::filterVisitors(const QString &text, int departmentId)
 
     while (query.next())
     {
-        ui->visitorsList->addItem(new VisitorsListItem(query.value("name").toString(), query.value("id").toInt()));
+        ui->visitorsList->addItem(new DatabaseRowListItem(query.value("name").toString(), query.value("id").toInt()));
     }
 
     ui->addVisitorButton->setEnabled(true);
@@ -125,6 +122,7 @@ void MainWindow::showSettingsWindow()
 
     connect(window, SIGNAL(departmentsUpdated()), this, SLOT(on_settings_window_closed()));
 
+    window->activateDepartmentsTab();
     window->show();
 }
 
@@ -136,7 +134,7 @@ void MainWindow::on_visitorsList_itemSelectionChanged()
         return;
     }
 
-    VisitorsListItem* item = (VisitorsListItem*) ui->visitorsList->selectedItems().first();
+    DatabaseRowListItem* item = (DatabaseRowListItem*) ui->visitorsList->selectedItems().first();
 
     int visitorId = item->getId();
 
@@ -195,7 +193,7 @@ void MainWindow::loadVisitorDetails(int visitorId)
 
 void MainWindow::on_create_order_window_closed()
 {
-    VisitorsListItem* item = (VisitorsListItem*) ui->visitorsList->selectedItems().first();
+    DatabaseRowListItem* item = (DatabaseRowListItem*) ui->visitorsList->selectedItems().first();
 
     int visitorId = item->getId();
 
@@ -204,7 +202,7 @@ void MainWindow::on_create_order_window_closed()
 
 void MainWindow::on_createOrderButton_clicked()
 {
-    VisitorsListItem* item = (VisitorsListItem*) ui->visitorsList->selectedItems().first();
+    DatabaseRowListItem* item = (DatabaseRowListItem*) ui->visitorsList->selectedItems().first();
 
     int visitorId = item->getId();
 
@@ -213,6 +211,18 @@ void MainWindow::on_createOrderButton_clicked()
     connect(window, SIGNAL(closed()), this, SLOT(on_create_order_window_closed()));
 
     window->show();
+
+    if (!DatabaseProvider::isAnyProgramPresent())
+    {
+        SettingsWindow* settings_window = new SettingsWindow();
+
+        connect(settings_window, SIGNAL(programsUpdated()), window, SLOT(on_settings_window_programsUpdated()));
+
+        QMessageBox::information(settings_window, tr("Information"), tr("There are no services in the database. Create a few in this window, please."), QMessageBox::Ok);
+
+        settings_window->activateProgramsTab();
+        settings_window->show();
+    }
 }
 
 void MainWindow::on_visitorNameEdit_textEdited(const QString &arg1)

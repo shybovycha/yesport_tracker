@@ -209,18 +209,18 @@ public:
 
     void retranslateUi(QWidget *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\320\222\321\226\320\264\320\262\321\226\320\264\321\203\320\262\320\260\321\207\321\226", 0));
-        label_11->setText(QApplication::translate("MainWindow", "\320\241\320\265\320\272\321\206\321\226\321\217:", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Visitors", 0));
+        label_11->setText(QApplication::translate("MainWindow", "Section:", 0));
         settingsButton->setText(QString());
-        label_12->setText(QApplication::translate("MainWindow", "\320\237\320\276\321\210\321\203\320\272 \320\262\321\226\320\264\320\262\321\226\320\264\321\203\320\262\320\260\321\207\321\226\320\262:", 0));
-        quickSearchEdit->setPlaceholderText(QApplication::translate("MainWindow", "\320\206\320\274\342\200\231\321\217 \320\260\320\261\320\276 \320\277\321\200\321\226\320\267\320\262\320\270\321\211\320\265 \320\262\321\226\320\264\320\262\321\226\320\264\321\203\320\262\320\260\321\207\320\260, \321\217\320\272\320\276\320\263\320\276 \321\210\321\203\320\272\320\260\321\224\320\274\320\276 \320\260\320\261\320\276 \320\264\320\276\320\264\320\260\321\224\320\274\320\276", 0));
-        addVisitorButton->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\264\320\260\321\202\320\270", 0));
-        label_9->setText(QApplication::translate("MainWindow", "\320\206\320\274\342\200\231\321\217 \321\202\320\260 \320\277\321\200\321\226\320\267\320\262\320\270\321\211\320\265 \320\262\321\226\320\264\320\262\321\226\320\264\321\203\320\262\320\260\321\207\320\260:", 0));
+        label_12->setText(QApplication::translate("MainWindow", "Search for visitors:", 0));
+        quickSearchEdit->setPlaceholderText(QApplication::translate("MainWindow", "Visitor name to find or create", 0));
+        addVisitorButton->setText(QApplication::translate("MainWindow", "Create", 0));
+        label_9->setText(QApplication::translate("MainWindow", "Visitor name:", 0));
         visitorNameEdit->setText(QString());
-        visitorNameEdit->setPlaceholderText(QApplication::translate("MainWindow", "\320\275\320\260\320\277\321\200. \320\206\320\262\320\260\320\275\320\276\320\262 \320\241\321\202\320\265\320\277\320\260\320\275 \320\237\320\265\321\202\321\200\320\276\320\262\320\270\321\207", 0));
-        label_10->setText(QApplication::translate("MainWindow", "\320\236\320\277\320\273\320\260\321\207\320\265\320\275\321\226 \320\277\320\276\321\201\320\273\321\203\320\263\320\270:", 0));
-        createOrderButton->setText(QApplication::translate("MainWindow", "\320\241\321\202\320\262\320\276\321\200\320\270\321\202\320\270 \320\276\320\277\320\273\320\260\321\202\321\203", 0));
-        saveVisitorDetailsButton->setText(QApplication::translate("MainWindow", "\320\227\320\261\320\265\321\200\320\265\320\263\321\202\320\270", 0));
+        visitorNameEdit->setPlaceholderText(QApplication::translate("MainWindow", "for ex.: Mark Rudolf Junior", 0));
+        label_10->setText(QApplication::translate("MainWindow", "Payments:", 0));
+        createOrderButton->setText(QApplication::translate("MainWindow", "Create payment", 0));
+        saveVisitorDetailsButton->setText(QApplication::translate("MainWindow", "Save", 0));
     } // retranslateUi
 
 };

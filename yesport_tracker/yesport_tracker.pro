@@ -14,18 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    visitorslistitem.cpp \
     createorderwindow.cpp \
     settingswindow.cpp \
-    myapplication.cpp \
-    databaserowlistitem.cpp
+    databaserowlistitem.cpp \
+    databaseprovider.cpp
 
 HEADERS  += mainwindow.h \
-    visitorslistitem.h \
     createorderwindow.h \
     settingswindow.h \
-    myapplication.h \
-    databaserowlistitem.h
+    databaserowlistitem.h \
+    databaseprovider.h
 
 FORMS    += mainwindow.ui \
     createorderwindow.ui \

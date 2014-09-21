@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Налаштування</string>
+   <string>Settings</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -29,17 +29,20 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="departmentsTab">
         <attribute name="title">
-         <string>Секції</string>
+         <string>Sections</string>
         </attribute>
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="1">
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
             <widget class="QToolButton" name="addDepartmentButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -57,6 +60,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="removeDepartmentButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -79,7 +85,7 @@
            <item>
             <widget class="QLabel" name="label">
              <property name="text">
-              <string>Назва секції:</string>
+              <string>Section name:</string>
              </property>
             </widget>
            </item>
@@ -92,7 +98,7 @@
               <number>5000</number>
              </property>
              <property name="placeholderText">
-              <string>напр. &quot;Йога&quot;</string>
+              <string>for ex.: Joga</string>
              </property>
             </widget>
            </item>
@@ -105,7 +111,7 @@
        </widget>
        <widget class="QWidget" name="programsTab">
         <attribute name="title">
-         <string>Послуги</string>
+         <string>Services</string>
         </attribute>
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="1">
@@ -113,14 +119,14 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Вид послуги:</string>
+              <string>Service name:</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QLineEdit" name="programNameEdit">
              <property name="placeholderText">
-              <string>напр. &quot;Місячний абонемент&quot;</string>
+              <string>for ex.: Monthly subscription</string>
              </property>
             </widget>
            </item>
@@ -133,6 +139,9 @@
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
             <widget class="QToolButton" name="addProgramButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -150,6 +159,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="removeProgramButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -174,7 +186,7 @@
      <item>
       <widget class="QPushButton" name="closeButton">
        <property name="text">
-        <string>Зберегти</string>
+        <string>Save</string>
        </property>
       </widget>
      </item>

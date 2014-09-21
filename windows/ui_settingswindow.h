@@ -76,6 +76,7 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         addDepartmentButton = new QToolButton(departmentsTab);
         addDepartmentButton->setObjectName(QStringLiteral("addDepartmentButton"));
+        addDepartmentButton->setEnabled(false);
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/icons/images/Add.png"), QSize(), QIcon::Normal, QIcon::Off);
         addDepartmentButton->setIcon(icon1);
@@ -85,6 +86,7 @@ public:
 
         removeDepartmentButton = new QToolButton(departmentsTab);
         removeDepartmentButton->setObjectName(QStringLiteral("removeDepartmentButton"));
+        removeDepartmentButton->setEnabled(false);
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/icons/images/Remove.png"), QSize(), QIcon::Normal, QIcon::Off);
         removeDepartmentButton->setIcon(icon2);
@@ -145,6 +147,7 @@ public:
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         addProgramButton = new QToolButton(programsTab);
         addProgramButton->setObjectName(QStringLiteral("addProgramButton"));
+        addProgramButton->setEnabled(false);
         addProgramButton->setIcon(icon1);
         addProgramButton->setIconSize(QSize(24, 24));
 
@@ -152,6 +155,7 @@ public:
 
         removeProgramButton = new QToolButton(programsTab);
         removeProgramButton->setObjectName(QStringLiteral("removeProgramButton"));
+        removeProgramButton->setEnabled(false);
         removeProgramButton->setIcon(icon2);
         removeProgramButton->setIconSize(QSize(24, 24));
 
@@ -175,7 +179,7 @@ public:
 
         retranslateUi(SettingsWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(SettingsWindow);
@@ -183,21 +187,21 @@ public:
 
     void retranslateUi(QWidget *SettingsWindow)
     {
-        SettingsWindow->setWindowTitle(QApplication::translate("SettingsWindow", "\320\235\320\260\320\273\320\260\321\210\321\202\321\203\320\262\320\260\320\275\320\275\321\217", 0));
+        SettingsWindow->setWindowTitle(QApplication::translate("SettingsWindow", "Settings", 0));
         addDepartmentButton->setText(QString());
         removeDepartmentButton->setText(QString());
-        label->setText(QApplication::translate("SettingsWindow", "\320\235\320\260\320\267\320\262\320\260 \321\201\320\265\320\272\321\206\321\226\321\227:", 0));
+        label->setText(QApplication::translate("SettingsWindow", "Section name:", 0));
 #ifndef QT_NO_TOOLTIP
         departmentNameEdit->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
-        departmentNameEdit->setPlaceholderText(QApplication::translate("SettingsWindow", "\320\275\320\260\320\277\321\200. \"\320\231\320\276\320\263\320\260\"", 0));
-        tabWidget->setTabText(tabWidget->indexOf(departmentsTab), QApplication::translate("SettingsWindow", "\320\241\320\265\320\272\321\206\321\226\321\227", 0));
-        label_2->setText(QApplication::translate("SettingsWindow", "\320\222\320\270\320\264 \320\277\320\276\321\201\320\273\321\203\320\263\320\270:", 0));
-        programNameEdit->setPlaceholderText(QApplication::translate("SettingsWindow", "\320\275\320\260\320\277\321\200. \"\320\234\321\226\321\201\321\217\321\207\320\275\320\270\320\271 \320\260\320\261\320\276\320\275\320\265\320\274\320\265\320\275\321\202\"", 0));
+        departmentNameEdit->setPlaceholderText(QApplication::translate("SettingsWindow", "for ex.: Joga", 0));
+        tabWidget->setTabText(tabWidget->indexOf(departmentsTab), QApplication::translate("SettingsWindow", "Sections", 0));
+        label_2->setText(QApplication::translate("SettingsWindow", "Service name:", 0));
+        programNameEdit->setPlaceholderText(QApplication::translate("SettingsWindow", "for ex.: Monthly subscription", 0));
         addProgramButton->setText(QString());
         removeProgramButton->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(programsTab), QApplication::translate("SettingsWindow", "\320\237\320\276\321\201\320\273\321\203\320\263\320\270", 0));
-        closeButton->setText(QApplication::translate("SettingsWindow", "\320\227\320\261\320\265\321\200\320\265\320\263\321\202\320\270", 0));
+        tabWidget->setTabText(tabWidget->indexOf(programsTab), QApplication::translate("SettingsWindow", "Services", 0));
+        closeButton->setText(QApplication::translate("SettingsWindow", "Save", 0));
     } // retranslateUi
 
 };

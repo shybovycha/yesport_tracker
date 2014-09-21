@@ -22,15 +22,28 @@ public:
     ~SettingsWindow();
 
     void showTooltip();
+    void activateProgramsTab();
+    void activateDepartmentsTab();
 
 signals:
     void departmentsUpdated();
+    void programsUpdated();
 
 private slots:
     void on_closeButton_clicked();
     void on_addDepartmentButton_clicked();
     void on_removeDepartmentButton_clicked();
     void on_addProgramButton_clicked();
+
+    void on_removeProgramButton_clicked();
+
+    void on_departmentsList_itemSelectionChanged();
+
+    void on_departmentNameEdit_textEdited(const QString &arg1);
+
+    void on_programsList_itemSelectionChanged();
+
+    void on_programNameEdit_textEdited(const QString &arg1);
 
 private:
     void showAllDepartments();

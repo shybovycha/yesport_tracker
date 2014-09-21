@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Оплата</string>
+   <string>Payment</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -23,7 +23,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Вид послуги:</string>
+        <string>Service type:</string>
        </property>
       </widget>
      </item>
@@ -33,7 +33,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Сплачено:</string>
+        <string>Amount:</string>
        </property>
       </widget>
      </item>
@@ -47,7 +47,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Термін дії послуги:</string>
+        <string>Payed until:</string>
        </property>
       </widget>
      </item>
@@ -59,14 +59,14 @@
        <item>
         <widget class="QPushButton" name="createOrderButton">
          <property name="text">
-          <string>Оплатити</string>
+          <string>Confirm</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="cancelButton">
          <property name="text">
-          <string>Відмінити</string>
+          <string>Cancel</string>
          </property>
         </widget>
        </item>

@@ -1,14 +1,12 @@
 INPUT(
 ./debug\main.o
 ./debug\mainwindow.o
-./debug\visitorslistitem.o
 ./debug\createorderwindow.o
 ./debug\settingswindow.o
-./debug\myapplication.o
 ./debug\databaserowlistitem.o
+./debug\databaseprovider.o
 ./debug\qrc_general.o
 ./debug\moc_mainwindow.o
 ./debug\moc_createorderwindow.o
 ./debug\moc_settingswindow.o
-./debug\moc_myapplication.o
 );
