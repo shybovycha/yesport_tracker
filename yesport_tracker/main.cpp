@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QFile>
 #include <QTextStream>
+#include <QLocale>
 
 void myMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -47,6 +48,9 @@ int main(int argc, char *argv[])
     // qtTranslator.load(QLocale::system().name());
     qtTranslator.load("uk_UA");
     app->installTranslator(&qtTranslator);
+
+    QLocale curLocale(QLocale("pl_PL"));
+    QLocale::setDefault(curLocale);
 
     DatabaseProvider::initDatabase();
 

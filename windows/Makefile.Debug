@@ -94,7 +94,7 @@ $(DESTDIR_TARGET): ui_mainwindow.h ui_createorderwindow.h ui_settingswindow.h $(
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.yesport_tracker.Debug  $(LIBS)
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-g++ CONFIG+=debug -o Makefile.Debug ..\yesport_tracker\yesport_tracker.pro
+	@$(QMAKE) -spec win32-g++ -o Makefile.Debug ..\yesport_tracker\yesport_tracker.pro
 
 qmake_all: FORCE
 
@@ -956,7 +956,8 @@ debug/main.o: ../yesport_tracker/main.cpp ../yesport_tracker/mainwindow.h \
 		../yesport_tracker/databaserowlistitem.h \
 		../yesport_tracker/createorderwindow.h \
 		C:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QFile \
-		C:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QTextStream
+		C:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QTextStream \
+		C:/Qt/Qt5.3.1/5.3/mingw482_32/include/QtCore/QLocale
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\yesport_tracker\main.cpp
 
 debug/mainwindow.o: ../yesport_tracker/mainwindow.cpp ../yesport_tracker/mainwindow.h \

@@ -36,7 +36,6 @@ private slots:
     void on_visitorsList_itemSelectionChanged();
     void on_createOrderButton_clicked();
     void on_visitorNameEdit_textEdited(const QString &arg1);
-
     void on_departmentsList_currentIndexChanged(const QString &arg1);
 
 protected:

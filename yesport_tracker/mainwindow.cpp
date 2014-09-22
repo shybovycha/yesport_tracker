@@ -82,7 +82,7 @@ void MainWindow::filterVisitors(const QString &text, int departmentId)
         query.bindValue(":department_id", departmentId);
     } else
     {
-        query.prepare("SELECT id, name FROM visitors WHERE name LIKE :name AND department_id = :department_id");
+        query.prepare("SELECT id, name FROM visitors WHERE name LIKE :name AND department_id = :department_id COLLATE NOCASE");
         query.bindValue(":name", QString("%%%1%%").arg(text));
         query.bindValue(":department_id", departmentId);
     }
@@ -170,7 +170,7 @@ void MainWindow::loadVisitorDetails(int visitorId)
 
     ui->visitorNameEdit->setText(visitorName);
 
-    query.prepare("SELECT created_at, amount, payed_until FROM orders WHERE visitor_id = :visitorId");
+    query.prepare("SELECT A.id AS order_id, A.created_at AS created_at, A.amount AS amount, A.payed_until AS payed_until, A.program_id AS program_id, B.name AS program_name FROM orders AS A JOIN programs as B ON A.program_id = B.id WHERE A.visitor_id = :visitorId");
     query.bindValue(":visitorId", visitorId);
     query.exec();
 
@@ -180,12 +180,15 @@ void MainWindow::loadVisitorDetails(int visitorId)
     {
         QDate created_at = query.value("created_at").toDate();
         QDate payed_until = query.value("payed_until").toDate();
-
+        QString program_name = query.value("program_name").toString();
         float amount = query.value("amount").toFloat();
+        int orderId = query.value("order_id").toInt();
+
         QString created_at_str = created_at.toString("dd MMM yyyy");
         QString payed_until_str = payed_until.toString("dd MMM yyyy");
+        QString orderRow = tr("%1 - %2 UAH for %3 until %4").arg(created_at_str).arg(amount).arg(program_name).arg(payed_until_str);
 
-        ui->visitorOrdersList->addItem(tr("%1 - %2 UAH until %3").arg(created_at_str).arg(amount).arg(payed_until_str));
+        ui->visitorOrdersList->addItem(new DatabaseRowListItem(orderRow, orderId));
     }
 
     ui->visitorDetailsFrame->setEnabled(true);
